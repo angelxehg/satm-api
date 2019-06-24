@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'America/cimat-hgip_City',
+    'timezone' => 'America/Mexico_City',
 
     /*
     |--------------------------------------------------------------------------
