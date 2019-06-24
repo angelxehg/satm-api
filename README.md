@@ -1,10 +1,8 @@
-# SATM
-
+# satm-api
 API para el Sistema de Administración de Tareas de Mantenimiento
 
-## Instalación
-
-`git clone https://github.com/angelxehg/satm-api.git satm-api`
+# Instalación
+`git clone https://github.com/peranghx/satm-api`
 
 `cd satm-api`
 
@@ -20,10 +18,9 @@ API para el Sistema de Administración de Tareas de Mantenimiento
 
 `php artisan migrate:fresh --seed`
 
-## Configuración
+# Configuración
 
-### Apache
-
+## Apache
 `sudo nano +164 /etc/apache2/apache2.conf`
 
 Cambiar:
@@ -36,3 +33,8 @@ Ejecutar
 `sudo a2enmod rewrite`
 
 `sudo service apache2 restart`
+
+## Usuario Administrador
+Inicie sesión (con satm-web), y cambie el email y contraseña. Por defecto:
+Correo: `admin@utzac.edu.mx`
+Contraseña: `admin`
