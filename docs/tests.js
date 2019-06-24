@@ -1,39 +1,102 @@
 // System Tests
-testResponseTime = function (response) {
+systemResponseTime = function (response) {
     // Check if response time is less than 2 seconds
-    pm.test("testResponseTime: Response time is less than 2s", function () {
+    pm.test("systemResponseTime: Response time is less than 2s", function () {
         pm.expect(response.responseTime).to.be.below(2000);
     });
 }
-testCorrect = function (response) {
+systemCorrect = function (response) {
     // Check if error is false
-    pm.test("testCorrect: Error is false", function () {
+    pm.test("systemCorrect: Error is false", function () {
         var jsonData = response.json();
         pm.expect(jsonData.error).to.eql(false);
     });
 }
-testError = function (response) {
+systemError = function (response) {
     // Check if error is true
-    pm.test("testError: Error is true", function () {
+    pm.test("systemError: Error is true", function () {
         var jsonData = response.json();
         pm.expect(jsonData.error).to.eql(true);
     });
 }
-testStatus = function (response, status) {
+systemStatus = function (response, status) {
     // Assert some status code
-    pm.test("testStatus: Status code is " + status, function () {
+    pm.test("systemStatus: Status code is " + status, function () {
         response.to.have.status(status);
     });
 }
-testStatus200 = function (response) {
+systemStatus200 = function (response) {
     // Check if status code is 200 OK
-    testStatus(response, 200);
+    systemStatus(response, 200);
 }
-testStatus401 = function (response) {
+systemStatus401 = function (response) {
     // Check if status code is 401 Unauthorized
-    testStatus(response, 401);
+    systemStatus(response, 401);
 }
-testStatus422 = function (response) {
+systemStatus422 = function (response) {
     // Check if status code is 422 Unprocesable
-    testStatus(response, 422);
+    systemStatus(response, 422);
+}
+// Aceptance
+aceptanceR1  = function (response) {
+    // System Tests
+    systemCorrect(response);
+    systemStatus200(response);
+}
+aceptanceR2  = function (response) {
+    // System Tests
+    systemCorrect(response);
+    systemStatus200(response);
+}
+aceptanceR3  = function (response) {
+    // System Tests
+    systemCorrect(response);
+    systemStatus200(response);
+}
+aceptanceR4  = function (response) {
+    // System Tests
+    systemCorrect(response);
+    systemStatus200(response);
+}
+// Integration
+integrationOK = function (response) {
+    // System Tests
+    systemCorrect(response);
+    systemStatus200(response);
+    // Check if error is false
+    pm.test("unitLB: Is correct", function () {
+        var jsonData = response.json();
+        pm.expect(jsonData.error).to.eql(false);
+    });
+}
+// Unit Tests
+unitBLB = function (response) {
+    // System Tests
+    systemError(response);
+    systemStatus422(response);
+    // Check if error is true
+    pm.test("unitBLB: Throws error", function () {
+        var jsonData = response.json();
+        pm.expect(jsonData.error).to.eql(true);
+    });
+}
+unitLB = function (response) {
+    // System Tests
+    systemCorrect(response);
+    systemStatus200(response);
+    // Check if error is true
+    pm.test("unitLB: Is correct", function () {
+        var jsonData = response.json();
+        pm.expect(jsonData.error).to.eql(false);
+    });
+}
+unitALB = function (response) {
+    // System Tests
+    systemCorrect(response);
+    systemStatus200(response);
+    // Check if error is true
+    pm.test("unitALB: Is correct", function () {
+        var jsonData = response.json();
+        pm.expect(jsonData.error).to.eql(false);
+    });
 }
