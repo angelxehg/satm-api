@@ -8,7 +8,7 @@ API para el Sistema de Administración de Tareas de Mantenimiento
 
 `composer install`
 
-`cp .env.example .env`
+`cp .env.production .env`, o en entornos de prueba `cp .env.example .env`
 
 `php artisan key:generate`
 
