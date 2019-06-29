@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $adminData = [
+            'name' => "Root User",
+            'email' => "admin@cimat.mx",
+            'password' => Hash::make('admin1234'),
+        ];
+        $admin = new User($adminData);
+        $admin->save();
     }
 }
