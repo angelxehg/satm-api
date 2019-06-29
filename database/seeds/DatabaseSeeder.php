@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             'name' => "Root User",
             'email' => "admin@cimat.mx",
             'password' => Hash::make('admin1234'),
+            'admin' => true
         ];
         $admin = new User($adminData);
         $admin->save();

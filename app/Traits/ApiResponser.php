@@ -33,6 +33,7 @@ trait ApiResponser {
         ], 200);
     }
 
+    // Show a sucess response
     protected function sucessResponse($message, $code) {
         return response()->json([
             'error' => false,
@@ -40,6 +41,7 @@ trait ApiResponser {
         ], $code);
     }
 
+    // Show a error response
     protected function errorResponse($message, $code) {
         return response()->json([
             'error' => true,
@@ -47,6 +49,7 @@ trait ApiResponser {
         ], $code);
     }    
 
+    // Show multiple error response
     protected function errorDataResponse($message, $data, $code) {
         return response()->json([
             'error' => true,
