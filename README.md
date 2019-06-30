@@ -1,6 +1,8 @@
 # Laravel API
 
-## Instalación
+This is a template project to create an REST API, based on Laravel
+
+## Setup
 
 `git clone https://github.com/angelxehg/laravel-api.git`
 
@@ -18,7 +20,7 @@
 
 `php artisan migrate:fresh --seed`
 
-## Configuración
+## Configuration
 
 ### Apache
 
@@ -30,7 +32,8 @@ Options Indexes FollowSymLinks
 AllowOverride All
 Require all granted
 
-Ejecutar
+Run
+
 `sudo a2enmod rewrite`
 
 `sudo service apache2 restart`
