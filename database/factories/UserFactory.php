@@ -1,9 +1,9 @@
 <?php
 
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Hash;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$0E.LQlpYeTgbK/zrjQP.4eL90R7WcaPniKGIEOPeO0m/PzVTFaUym', // password,
         'hability' => $faker->jobTitle

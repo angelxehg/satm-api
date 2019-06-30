@@ -1,5 +1,7 @@
 <?php
+
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Validation Language Lines
@@ -87,7 +89,8 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-    'custom'               => [
+
+    'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],

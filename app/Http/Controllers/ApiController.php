@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use Illuminate\Auth\AuthenticationException;
-use App\Exceptions\NotAdminException;
-use Illuminate\Support\Facades\Hash;
-use App\Synth;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Hash as Hash;
+use Illuminate\Support\Facades\Cache as IlluminateCache;
 
 class ApiController extends Controller {
     
     use ApiResponser;
 
-    protected function isLoggedIn() {
+    protected function isLogged() {
         if ($user = auth()->user()) {
             return $user;
         } else {

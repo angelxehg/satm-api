@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Cache;
 use App\Modif;
+
 trait ApiResponser {
 
     // Synth probe
@@ -36,6 +37,17 @@ trait ApiResponser {
         ], 200);
     }
 
+    protected function sendToken($token, $me) {
+        return response()->json([
+            'error' => false,
+            'current' => $me,
+            'message' => "Sucessful login",
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
+        ], 200);
+    }
+
     // Show a sucess response
     protected function sucessResponse($message, $code) {
         return response()->json([
@@ -61,15 +73,4 @@ trait ApiResponser {
         ], $code);
     }
 
-    // Send a token
-    protected function sendToken($token, $me) {
-        return response()->json([
-            'error' => false,
-            'current' => $me,
-            'message' => "Sucessful login",
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
-        ], 200);
-    }
 }

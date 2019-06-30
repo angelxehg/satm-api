@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Hash as Hash;
 use Illuminate\Support\Facades\Cache as IlluminateCache;
 
 class UserController extends ApiController

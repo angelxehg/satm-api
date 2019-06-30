@@ -1,14 +1,16 @@
-# satm-api
-API para el Sistema de Administración de Tareas de Mantenimiento
+# Laravel API
 
-# Instalación
-`git clone https://github.com/peranghx/satm-api`
+This is a template project to create an REST API, based on Laravel
 
-`cd satm-api`
+## New Install Setup
+
+`git clone https://github.com/angelxehg/laravel-api.git`
+
+`cd laravel-api`
 
 `composer install`
 
-`cp .env.production .env`, o en entornos de prueba `cp .env.example .env`
+`cp .env.example .env`
 
 `php artisan key:generate`
 
@@ -18,9 +20,22 @@ API para el Sistema de Administración de Tareas de Mantenimiento
 
 `php artisan migrate:fresh --seed`
 
-# Configuración
+## Update Setup
 
-## Apache
+`cd laravel-api`
+
+`git pull`
+
+`composer install`
+
+**Important** Do not include the ":fresh --seed" parameter to conserve data
+
+`php artisan migrate`
+
+## Configuration
+
+### Apache
+
 `sudo nano +164 /etc/apache2/apache2.conf`
 
 Cambiar:
@@ -29,12 +44,8 @@ Options Indexes FollowSymLinks
 AllowOverride All
 Require all granted
 
-Ejecutar
+Run
+
 `sudo a2enmod rewrite`
 
 `sudo service apache2 restart`
-
-## Usuario Administrador
-Inicie sesión (con satm-web), y cambie el email y contraseña. Por defecto:
-Correo: `admin@utzac.edu.mx`
-Contraseña: `admin`
