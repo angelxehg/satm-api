@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $adminData = [
-            'name' => "Root User",
+            'first_name' => "Root",
+            'last_name' => "User",
             'email' => "admin@laravel.com",
             'password' => Hash::make('admin1234'),
             'admin' => true

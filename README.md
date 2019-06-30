@@ -2,7 +2,7 @@
 
 This is a template project to create an REST API, based on Laravel
 
-## Setup
+## New Install Setup
 
 `git clone https://github.com/angelxehg/laravel-api.git`
 
@@ -19,6 +19,18 @@ This is a template project to create an REST API, based on Laravel
 `mysql -u root < db.sql`
 
 `php artisan migrate:fresh --seed`
+
+## Update Setup
+
+`cd laravel-api`
+
+`git pull`
+
+`composer install`
+
+**Important** Do not include the ":fresh --seed" parameter to conserve data
+
+`php artisan migrate`
 
 ## Configuration
 
