@@ -29,9 +29,10 @@ class UserController extends ApiController
     {
         if ($currentUser = $this->isAdmin()) {
             $rules = [
-                'name' => 'required|min:2|max:150',
-                'email' => 'required|min:2|max:150|email|unique:users',
-                'password' => 'required|min:6|max:150|confirmed',
+                'first_name' => 'required|min:2|max:80',
+                'last_name' => 'required|min:2|max:80',
+                'email' => 'required|min:2|max:100|email|unique:users',
+                'password' => 'required|min:6|max:100|confirmed',
                 'admin' => 'boolean'
             ];
             $this->validate($request, $rules);
@@ -56,9 +57,10 @@ class UserController extends ApiController
             }
             $user = User::findorFail($id);
             $rules = [
-                'name' => 'min:2|max:150',
-                'email' => 'email|min:2|max:150|unique:users,email,' . $user->id,
-                'password' => 'min:6|max:150|confirmed',
+                'first_name' => 'min:2|max:80',
+                'last_name' => 'min:2|max:80',
+                'email' => 'email|min:2|max:100|unique:users,email,' . $user->id,
+                'password' => 'min:6|max:100|confirmed',
                 'admin' => 'boolean'
             ];
             $this->validate($request, $rules);
