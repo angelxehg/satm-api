@@ -23,9 +23,9 @@ class ApiController extends Controller {
 
     protected function waterfallValidation($affectedUser) {
         $currentUser = $this->isLoggedIn();
-        if ($currentUser->isAdmin) {
+        if ($currentUser->admin) {
             // Is admin or himself
-            if (!$affectedUser->isAdmin || $affectedUser->id == $currentUser->id) {
+            if (!$affectedUser->admin || $affectedUser->id == $currentUser->id) {
                 // Permision to change a non-admin
                 return ['current' => $currentUser, 'permited' => true, 'message' => 'OK'];
             } else {
@@ -50,9 +50,9 @@ class ApiController extends Controller {
         }
     }
 
-    protected function isAdminAndLoggedIn() {
+    protected function adminAndLoggedIn() {
         $user = $this->isLoggedIn();
-        if ($user->isAdmin) {
+        if ($user->admin) {
             return $user;
         } else {
             throw new NotAdminException();

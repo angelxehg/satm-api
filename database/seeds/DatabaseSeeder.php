@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'email' => "admin@utzac.edu.mx",
             'password' => Hash::make('admin1234'),
             'hability' => 'Administración',
-            'isAdmin' => true
+            'admin' => true
         ];
         $admin = new User($adminData);
         $admin->save();

@@ -8,11 +8,11 @@ use App\Modif;
 trait ApiResponser {
 
     // Synth probe
-    protected function synthResponse($error, $session, $isAdmin, $synthKeys, $code, $me) {
+    protected function synthResponse($error, $session, $admin, $synthKeys, $code, $me) {
         return response()->json([
             'error' => $error,
             'session' => $session,
-            'isAdmin' => $isAdmin,
+            'admin' => $admin,
             'synthKeys' => $synthKeys,
             'current' => $me
         ], $code);

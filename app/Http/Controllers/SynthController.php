@@ -11,9 +11,9 @@ class SynthController extends ApiController
     public function index()
     {
         if ($user = auth()->user()) {
-            $isAdmin = false;
-            if ($user->isAdmin) {
-                $isAdmin = true;
+            $admin = false;
+            if ($user->admin) {
+                $admin = true;
             }
             $synthKeys = IlluminateCache::remember('probeKeys', 10, function () {
                 $synths = Synth::all();
@@ -26,7 +26,7 @@ class SynthController extends ApiController
                 ];
                 return $fiveKeys;
             });
-            return $this->synthResponse(false, true, $isAdmin, $synthKeys, 200, $user);
+            return $this->synthResponse(false, true, $admin, $synthKeys, 200, $user);
         } else {
             return $this->synthResponse(true, false, false, false, 401, false);
         }
