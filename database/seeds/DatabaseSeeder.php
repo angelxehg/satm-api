@@ -20,11 +20,12 @@ class DatabaseSeeder extends Seeder
     {
         // Create default admin
         $adminData = [
-            'name' => "Admin",
+            'first_name' => "Root",
+            'last_name' => "User",
             'email' => "admin@utzac.edu.mx",
             'password' => Hash::make('admin1234'),
             'hability' => 'Administración',
-            'isAdmin' => true
+            'admin' => true
         ];
         $admin = new User($adminData);
         $admin->save();

@@ -18,8 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('hability');
-            $table->boolean('isAdmin')->default(false);
+            $table->boolean('admin')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

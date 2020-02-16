@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use Illuminate\Auth\AuthenticationException;
-use App\Exceptions\NotAdminException;
-use Illuminate\Support\Facades\Hash;
-use App\Synth;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Hash as Hash;
+use Illuminate\Support\Facades\Cache as IlluminateCache;
 
 class ApiController extends Controller {
     
     use ApiResponser;
 
-    protected function isLoggedIn() {
+    protected function isLogged() {
         if ($user = auth()->user()) {
             return $user;
         } else {
@@ -23,9 +23,9 @@ class ApiController extends Controller {
 
     protected function waterfallValidation($affectedUser) {
         $currentUser = $this->isLoggedIn();
-        if ($currentUser->isAdmin) {
+        if ($currentUser->admin) {
             // Is admin or himself
-            if (!$affectedUser->isAdmin || $affectedUser->id == $currentUser->id) {
+            if (!$affectedUser->admin || $affectedUser->id == $currentUser->id) {
                 // Permision to change a non-admin
                 return ['current' => $currentUser, 'permited' => true, 'message' => 'OK'];
             } else {
@@ -50,9 +50,9 @@ class ApiController extends Controller {
         }
     }
 
-    protected function isAdminAndLoggedIn() {
+    protected function adminAndLoggedIn() {
         $user = $this->isLoggedIn();
-        if ($user->isAdmin) {
+        if ($user->admin) {
             return $user;
         } else {
             throw new NotAdminException();

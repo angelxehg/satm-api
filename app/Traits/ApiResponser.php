@@ -4,14 +4,15 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Cache;
 use App\Modif;
+
 trait ApiResponser {
 
     // Synth probe
-    protected function synthResponse($error, $session, $isAdmin, $synthKeys, $code, $me) {
+    protected function synthResponse($error, $session, $admin, $synthKeys, $code, $me) {
         return response()->json([
             'error' => $error,
             'session' => $session,
-            'isAdmin' => $isAdmin,
+            'admin' => $admin,
             'synthKeys' => $synthKeys,
             'current' => $me
         ], $code);
@@ -33,6 +34,17 @@ trait ApiResponser {
             'message' => $message,
             'synthKey' => $synthKey,
             'data' => $collection
+        ], 200);
+    }
+
+    protected function sendToken($token, $me) {
+        return response()->json([
+            'error' => false,
+            'current' => $me,
+            'message' => "Sucessful login",
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
         ], 200);
     }
 
@@ -61,15 +73,4 @@ trait ApiResponser {
         ], $code);
     }
 
-    // Send a token
-    protected function sendToken($token, $me) {
-        return response()->json([
-            'error' => false,
-            'current' => $me,
-            'message' => "Sucessful login",
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
-        ], 200);
-    }
 }

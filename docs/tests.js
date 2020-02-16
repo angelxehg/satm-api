@@ -33,7 +33,13 @@ systemStatus401 = function (response) {
     // Check if status code is 401 Unauthorized
     systemStatus(response, 401);
 }
+systemStatus403 = function (response) {
+    // Check if status code is 403 Unauthorized
+    systemStatus(response, 403);
+}
 systemStatus422 = function (response) {
     // Check if status code is 422 Unprocesable
     systemStatus(response, 422);
 }
+// Set random emails
+pm.environment.set("fake_email", "test" + _.random(100000,999999) + "@cimat.mx");

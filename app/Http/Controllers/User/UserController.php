@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Hash as Hash;
 use Illuminate\Support\Facades\Cache as IlluminateCache;
 
 class UserController extends ApiController
@@ -36,7 +37,7 @@ class UserController extends ApiController
             'email' => 'required|min:2|max:150|email|unique:users',
             'password' => 'required|min:6|max:150|confirmed',
             'hability' => 'required|min:2|max:150',
-            'isAdmin' => 'boolean'
+            'admin' => 'boolean'
         ];
         $this->validate($request, $rules);
         $fields = $request->all();
@@ -58,7 +59,7 @@ class UserController extends ApiController
                 'email' => 'email|min:2|max:150|unique:users,email,' . $user->id,
                 'password' => 'min:6|max:150|confirmed',
                 'hability' => 'min:2|max:150',
-                'isAdmin' => 'boolean'
+                'admin' => 'boolean'
             ];
             $this->validate($request, $rules);
             if ($request->has('name')) {
@@ -73,8 +74,8 @@ class UserController extends ApiController
             if ($request->has('hability')) {
                 $user->hability = $request->hability;
             }
-            if ($request->has('isAdmin')) {
-                $user->isAdmin = $request->isAdmin;
+            if ($request->has('admin')) {
+                $user->admin = $request->admin;
             }
             $user->save();
             $this->synthUsers();
